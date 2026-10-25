@@ -2,53 +2,41 @@
 import React, { useEffect, useState } from 'react';
 import Banner from './Banner';
 import journalBannerImage from '../assets/moodtracker-banner4.jpg';
-import axios from 'axios';
+import { getJournalEntries, addJournalEntry } from '../services/api';
 import './JournalList.css';
 
 const JournalList = () => {
   const [entries, setEntries] = useState([]);
   const [newEntryText, setNewEntryText] = useState('');
-  const [selectedMoodTag, setSelectedMoodTag] = useState('Peaceful');
+  const [selectedMoodTag, setSelectedMoodTag] = useState('Peaceful 🌿');
   const [searchQuery, setSearchQuery] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successToast, setSuccessToast] = useState('');
 
   const moodTags = ['Peaceful 🌿', 'Grateful ✨', 'Reflective 🌊', 'Thriving 🌟', 'Vulnerable 🌧️', 'Overwhelmed ⚡'];
 
-  const fetchEntries = () => {
-    axios.get('http://localhost:5000/api/journal')
-      .then(response => {
-        setEntries(response.data || []);
-      })
-      .catch(error => {
-        console.error('Error fetching journal entries:', error);
-      });
+  const fetchEntries = async () => {
+    const data = await getJournalEntries();
+    setEntries(data || []);
   };
 
   useEffect(() => {
     fetchEntries();
   }, []);
 
-  const handleCreateEntry = (e) => {
+  const handleCreateEntry = async (e) => {
     e.preventDefault();
     if (!newEntryText.trim()) return;
 
     setIsSubmitting(true);
     const formattedEntry = `[${selectedMoodTag}] ${newEntryText.trim()}`;
 
-    axios.post('http://localhost:5000/api/journal', { entry: formattedEntry })
-      .then(() => {
-        setNewEntryText('');
-        fetchEntries();
-        setSuccessToast('✓ Reflection added to your sanctuary!');
-        setTimeout(() => setSuccessToast(''), 3000);
-      })
-      .catch(err => {
-        console.error('Error saving journal entry:', err);
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
+    await addJournalEntry(formattedEntry);
+    setNewEntryText('');
+    await fetchEntries();
+    setSuccessToast('✓ Reflection added to your sanctuary!');
+    setIsSubmitting(false);
+    setTimeout(() => setSuccessToast(''), 3000);
   };
 
   const filteredEntries = entries.filter(item => 
@@ -60,51 +48,30 @@ const JournalList = () => {
       <Banner 
         image={journalBannerImage} 
         title="Journal Sanctuary" 
-        subtitle="Your private archive of emotional reflections, daily breakthroughs, and soul notes." 
+        subtitle="Your private emotional canvas. Record your thoughts, track your sentiments, and cultivate inner peace." 
       />
 
-      <div className="journal-container">
-        {/* Top Analytics Bar */}
-        <div className="journal-stats-row">
-          <div className="jstat-card">
-            <span className="jstat-icon">📖</span>
-            <div>
-              <strong>{entries.length}</strong>
-              <small>Total Reflections</small>
-            </div>
+      <div className="journal-sanctuary-container">
+        {successToast && (
+          <div className="journal-toast">
+            {successToast}
           </div>
-          <div className="jstat-card">
-            <span className="jstat-icon">🌿</span>
-            <div>
-              <strong>{entries.filter(e => (e.sentiment || 0) >= 0).length}</strong>
-              <small>Positive & Balanced</small>
-            </div>
-          </div>
-          <div className="jstat-card">
-            <span className="jstat-icon">🔒</span>
-            <div>
-              <strong>Private & Safe</strong>
-              <small>Encrypted Locally</small>
-            </div>
-          </div>
-        </div>
+        )}
 
-        {/* Composer Form Card */}
+        {/* Reflection Composer */}
         <div className="journal-composer-card">
-          <div className="composer-header">
-            <h3>✍️ Write a Mindful Reflection</h3>
-            <p>How is your heart feeling in this exact moment?</p>
-          </div>
+          <h3 className="composer-title">✍️ New Reflection</h3>
+          <p className="composer-sub">How is your heart feeling in this exact moment?</p>
 
           <form onSubmit={handleCreateEntry}>
             <div className="mood-tag-selector">
-              <span className="tag-label">Mood Vibe:</span>
-              <div className="tag-pills">
+              <span className="mood-tag-label">Current Energy:</span>
+              <div className="tags-row">
                 {moodTags.map(tag => (
                   <button
                     key={tag}
                     type="button"
-                    className={`tag-btn ${selectedMoodTag === tag ? 'active' : ''}`}
+                    className={`tag-pill-btn ${selectedMoodTag === tag ? 'active' : ''}`}
                     onClick={() => setSelectedMoodTag(tag)}
                   >
                     {tag}
@@ -114,85 +81,78 @@ const JournalList = () => {
             </div>
 
             <textarea
-              className="composer-textarea"
+              className="journal-textarea"
+              placeholder="Write freely without judgment... What made you smile today? What weighed on your mind? What are you letting go of?"
               rows="4"
-              placeholder="Unburden your mind freely... What went well today? What are you holding onto? What are you ready to release?"
               value={newEntryText}
               onChange={(e) => setNewEntryText(e.target.value)}
               required
-            ></textarea>
+            />
 
             <div className="composer-footer">
-              {successToast && <span className="composer-toast">{successToast}</span>}
-              <button type="submit" className="composer-submit-btn" disabled={isSubmitting}>
-                {isSubmitting ? 'Saving...' : '💾 Save Reflection (+25 XP)'}
+              <span className="composer-hint">🔒 Fully encrypted & private to your personal session</span>
+              <button 
+                type="submit" 
+                className="submit-reflection-btn"
+                disabled={isSubmitting || !newEntryText.trim()}
+              >
+                {isSubmitting ? 'Saving Reflection...' : '🌱 Save Reflection'}
               </button>
             </div>
           </form>
         </div>
 
-        {/* Journal Entries Stream */}
-        <div className="journal-stream-section">
-          <div className="stream-header">
+        {/* Entries Stream & Filter */}
+        <div className="entries-stream-section">
+          <div className="stream-header-bar">
             <div>
-              <h3>Past Reflections & Insights</h3>
-              <p>Chronological journey of your thoughts</p>
+              <h3 className="stream-title">📖 Your Reflection Stream</h3>
+              <p className="stream-subtitle">A chronological journey through your emotional landscape.</p>
             </div>
 
-            <div className="search-input-wrap">
-              <span className="search-icon">🔍</span>
+            <div className="search-box-wrap">
               <input
                 type="text"
-                placeholder="Search your journal..."
+                placeholder="Search past reflections..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                className="journal-search-input"
               />
             </div>
           </div>
 
           {filteredEntries.length === 0 ? (
             <div className="empty-journal-box">
-              <span className="empty-icon">🍃</span>
-              <h4>Your journal is quiet</h4>
-              <p>Write your first mindful reflection above or complete a Mood Quiz to see your entries here.</p>
+              <span className="empty-icon">🕊️</span>
+              <h4>No reflections found</h4>
+              <p>Write your first entry above to plant a seed in your reflection sanctuary.</p>
             </div>
           ) : (
             <div className="entries-grid">
-              {filteredEntries.map(entry => {
-                const sentimentScore = entry.sentiment || 0;
-                let sentimentLabel = 'Balanced';
-                let sentimentClass = 'neutral';
-                if (sentimentScore > 1) {
-                  sentimentLabel = 'Uplifting';
-                  sentimentClass = 'positive';
-                } else if (sentimentScore < -1) {
-                  sentimentLabel = 'Deep / Heavy';
-                  sentimentClass = 'reflective';
-                }
+              {filteredEntries.map((item, index) => {
+                const dateObj = item.createdAt ? new Date(item.createdAt) : new Date();
+                const formattedDate = dateObj.toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric'
+                });
+                const formattedTime = dateObj.toLocaleTimeString('en-US', {
+                  hour: '2-digit',
+                  minute: '2-digit'
+                });
 
                 return (
-                  <div key={entry.id} className="entry-card">
-                    <div className="entry-card-top">
-                      <span className="entry-date">
-                        📅 {new Date(entry.createdAt).toLocaleDateString(undefined, { 
-                          weekday: 'short', 
-                          year: 'numeric', 
-                          month: 'short', 
-                          day: 'numeric' 
-                        })}
-                      </span>
-                      <span className={`sentiment-badge ${sentimentClass}`}>
-                        {sentimentLabel}
-                      </span>
+                  <div key={item.id || index} className="entry-card">
+                    <div className="entry-card-header">
+                      <span className="entry-chip">Entry #{entries.length - index}</span>
+                      <span className="entry-date">{formattedDate} • {formattedTime}</span>
                     </div>
 
-                    <p className="entry-body">{entry.entry}</p>
+                    <p className="entry-body">{item.entry}</p>
 
                     <div className="entry-card-footer">
-                      <span className="entry-id-note">Entry #{entry.id}</span>
-                      <span className="entry-time">
-                        {new Date(entry.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                      </span>
+                      <span className="zen-marker">✨ Mindful Moment</span>
+                      <span className="entry-saved-pill">✓ Saved</span>
                     </div>
                   </div>
                 );

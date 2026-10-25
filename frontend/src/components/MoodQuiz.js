@@ -1,7 +1,6 @@
-// src/components/MoodQuiz.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { saveMoodAssessment } from '../services/api';
 import './MoodQuiz.css';
 
 const quizQuestions = [
@@ -257,12 +256,9 @@ const MoodQuiz = () => {
     setIsCompleted(true);
     setXp((prev) => prev + 50); // Bonus XP for finishing!
 
-    // Sync to backend SQLite API automatically!
+    // Sync to backend SQLite API and backup to localStorage!
     try {
-      axios.post('http://localhost:5000/api/mood', { mood: profile.name }).catch(() => {});
-      axios.post('http://localhost:5000/api/journal', { 
-        entry: `[Mood Quiz Completed] Mood Type: ${profile.name}. Summary: ${profile.summary}` 
-      }).catch(() => {});
+      saveMoodAssessment(profile.name, profile.summary);
       setIsSaved(true);
     } catch (err) {
       // ignore

@@ -1,9 +1,8 @@
-// src/components/Challenges.js
 import React, { useState, useEffect } from 'react';
 import Banner from './Banner';
 import challengesImage from '../assets/challenges-banner.jpg';
 import challengesData from '../challengesData';
-import axios from 'axios';
+import { saveChallengeProof } from '../services/api';
 import './Challenges.css';
 
 const Challenges = () => {
@@ -51,13 +50,9 @@ const Challenges = () => {
       setCelebrationMsg(`🎉 Day ${day} Bloomed! +${currentChallenge.points} Garden XP`);
       setTimeout(() => setCelebrationMsg(''), 4000);
 
-      // Save proof / entry to backend
+      // Save proof / entry to backend and localStorage backup
       try {
-        axios.post('http://localhost:5000/api/challenges/proof', {
-          userId: 1,
-          day: day,
-          proof: reflectionInput || `Completed Day ${day}: ${currentChallenge.title}`
-        }).catch(() => {});
+        saveChallengeProof(day, reflectionInput || `Completed Day ${day}: ${currentChallenge.title}`);
       } catch (err) {
         // ignore
       }
