@@ -1,5 +1,5 @@
 // src/App.js
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Home from './components/Home';
 import MoodTrackerPage from './components/MoodTrackerPage';
@@ -23,8 +23,12 @@ import './App.css';
 const NavigationBar = () => {
   const { user, isMember, logout, openLoginModal } = useAuth();
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const closeMenu = () => setIsMobileMenuOpen(false);
 
   const handleRestrictedNav = (e, path, sectionTitle) => {
+    closeMenu();
     if (!isMember) {
       e.preventDefault();
       openLoginModal(path, `Please log in to access the ${sectionTitle}.`);
@@ -34,11 +38,11 @@ const NavigationBar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <Link to="/" className="brand-logo"><strong>EMOVIA</strong></Link>
+        <Link to="/" className="brand-logo" onClick={closeMenu}><strong>EMOVIA</strong></Link>
       </div>
 
-      <ul className="nav-links">
-        <li><Link to="/">Home</Link></li>
+      <ul className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+        <li><Link to="/" onClick={closeMenu}>Home</Link></li>
         <li>
           <Link 
             to="/mood-tracker" 
@@ -77,48 +81,73 @@ const NavigationBar = () => {
         </li>
         {/* Resources is accessible to all */}
         <li>
-          <Link to="/resources" title="Browse Mental Health Resources (Open to All)">
+          <Link to="/resources" onClick={closeMenu} title="Browse Mental Health Resources (Open to All)">
             Resources
           </Link>
         </li>
         {/* Saviour section is accessible to all */}
         <li>
-          <Link to="/saviour" className="nav-link-saviour" title="Open Emergency Lifeline (Open to All)">
+          <Link to="/saviour" onClick={closeMenu} className="nav-link-saviour" title="Open Emergency Lifeline (Open to All)">
             ⚡ Saviour
           </Link>
         </li>
       </ul>
 
-      {/* Top Right Corner Auth Controls */}
-      <div className="nav-auth-section">
-        {isMember ? (
-          <>
-            <span className="nav-user-chip member">
-              👤 {user?.name || 'Member'}
-            </span>
+      {/* Top Right Corner Auth Controls & Mobile Toggle */}
+      <div className="nav-right-actions">
+        <div className="nav-auth-section">
+          {isMember ? (
+            <>
+              <span className="nav-user-chip member">
+                👤 {user?.name || 'Member'}
+              </span>
+              <button 
+                type="button" 
+                className="nav-logout-btn" 
+                onClick={() => {
+                  logout();
+                  closeMenu();
+                  navigate('/');
+                }}
+                title="Log out of session"
+              >
+                Log Out
+              </button>
+            </>
+          ) : (
             <button 
               type="button" 
-              className="nav-logout-btn" 
+              className="nav-login-btn" 
               onClick={() => {
-                logout();
-                navigate('/');
+                closeMenu();
+                openLoginModal('/', 'Log in with your credentials to access member features.');
               }}
-              title="Log out of session"
+              title="Log in with your account"
             >
-              Log Out
+              🔐 Log In
             </button>
-          </>
-        ) : (
-          <button 
-            type="button" 
-            className="nav-login-btn" 
-            onClick={() => openLoginModal('/', 'Log in with your credentials to access member features.')}
-            title="Log in with your account"
-          >
-            🔐 Log In
-          </button>
-        )}
+          )}
+        </div>
+
+        {/* Mobile Hamburger Menu Toggle */}
+        <button 
+          type="button" 
+          className="mobile-menu-toggle"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle navigation menu"
+        >
+          {isMobileMenuOpen ? '✕' : '☰'}
+        </button>
       </div>
+
+      {/* Backdrop for closing mobile drawer when tapping outside */}
+      {isMobileMenuOpen && (
+        <div 
+          className="nav-backdrop" 
+          onClick={closeMenu} 
+          aria-hidden="true" 
+        />
+      )}
     </nav>
   );
 };

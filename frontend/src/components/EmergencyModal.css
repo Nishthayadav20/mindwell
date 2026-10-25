@@ -294,14 +294,46 @@
 }
 
 @media (max-width: 600px) {
+  .sos-modal-overlay {
+    padding: 12px;
+  }
+  .sos-modal-content {
+    max-height: 92vh;
+    border-radius: 18px;
+  }
+  .sos-modal-header {
+    padding: 18px 16px;
+  }
+  .sos-modal-title {
+    font-size: 18px;
+  }
   .sos-quick-strip {
     grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .sos-helpline-list {
+    padding: 14px 16px;
+    max-height: 54vh;
+  }
+  .sos-card {
+    padding: 12px 14px;
   }
   .floating-sos-btn .sos-text {
     display: none;
   }
   .floating-sos-btn {
-    padding: 14px;
+    top: auto;
+    bottom: 22px;
+    right: 14px;
+    transform: none;
+    width: 48px;
+    height: 48px;
+    padding: 0;
     border-radius: 50%;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(239, 68, 68, 0.6);
+  }
+  .floating-sos-btn:hover {
+    transform: scale(1.08);
   }
 }

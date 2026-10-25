@@ -420,3 +420,93 @@
   cursor: pointer;
   width: 100%;
 }
+
+/* ========================================================
+   RESPONSIVE BREAKPOINTS (Tablets, Mobiles, Desktops)
+   ======================================================== */
+
+@media (max-width: 900px) {
+  .rewards-hub-container {
+    padding: 28px 18px;
+  }
+  .rewards-dashboard-card {
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .rewards-dashboard-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+  
+  .coins-display-box {
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .perks-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rewards-hub-container {
+    padding: 20px 12px;
+  }
+
+  .tier-title {
+    font-size: 21px;
+  }
+
+  .coins-number {
+    font-size: 26px;
+  }
+
+  .badges-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .badge-card {
+    padding: 14px 10px;
+  }
+
+  .badge-card-icon {
+    font-size: 30px;
+    margin-bottom: 6px;
+  }
+
+  .badge-card-name {
+    font-size: 13.5px;
+  }
+
+  .badge-card-desc {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+
+  .perks-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .perk-img-wrap {
+    height: 130px;
+  }
+
+  .perk-content {
+    padding: 16px 14px;
+  }
+
+  .perk-content h4 {
+    font-size: 17px;
+  }
+
+  .perk-modal-box {
+    padding: 24px 18px;
+    max-width: 95vw;
+  }
+}

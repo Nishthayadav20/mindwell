@@ -481,3 +481,39 @@
     flex-direction: column;
   }
 }
+
+@media (max-width: 480px) {
+  .mood-quiz-container {
+    padding: 0 12px;
+    margin: 16px auto 36px;
+  }
+  .quiz-top-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px 14px;
+  }
+  .quiz-user-badge {
+    justify-content: space-between;
+  }
+  .quiz-xp-badge {
+    justify-content: center;
+  }
+  .quiz-active-card {
+    padding: 18px 14px;
+    border-radius: 18px;
+  }
+  .question-text {
+    font-size: 18px;
+  }
+  .quiz-option-btn {
+    padding: 14px 12px;
+    font-size: 13.5px;
+    gap: 10px;
+    border-radius: 14px;
+  }
+  .action-btn {
+    min-width: 0;
+    width: 100%;
+  }
+}

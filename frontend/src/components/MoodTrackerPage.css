@@ -229,3 +229,41 @@
     width: 100%;
   }
 }
+
+@media (max-width: 480px) {
+  .mood-gate-container {
+    padding: 0 12px;
+    margin: 20px auto;
+  }
+  .mood-gate-card {
+    padding: 24px 16px;
+    border-radius: 18px;
+  }
+  .gate-icon-wrap {
+    width: 66px;
+    height: 66px;
+    font-size: 32px;
+    margin-bottom: 14px;
+  }
+  .gate-title {
+    font-size: 21px;
+  }
+  .gate-desc {
+    font-size: 13.5px;
+    margin-bottom: 20px;
+  }
+  .mood-auth-strip {
+    padding: 8px 14px;
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
+    border-radius: 0 0 12px 12px;
+  }
+  .mood-user-info {
+    justify-content: space-between;
+  }
+  .mood-logout-btn {
+    text-align: center;
+    width: 100%;
+  }
+}

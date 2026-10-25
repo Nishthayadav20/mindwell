@@ -488,21 +488,91 @@
   font-weight: 600;
 }
 
-/* Responsive */
+/* Responsive Breakpoints */
 @media (max-width: 900px) {
+  .challenges-container {
+    padding: 28px 18px;
+  }
   .garden-dashboard {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
   .garden-layout {
     grid-template-columns: 1fr;
+    gap: 22px;
   }
   .leetcode-garden-grid {
     grid-template-columns: repeat(5, 1fr);
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
+  .challenges-container {
+    padding: 20px 12px;
+  }
+  .garden-status-card {
+    padding: 20px 16px;
+  }
+  .garden-grid-panel {
+    padding: 18px 14px;
+  }
+  .garden-detail-card {
+    padding: 18px 14px;
+  }
+  .panel-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .panel-filters {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .leetcode-garden-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .garden-level-name {
+    font-size: 22px;
+  }
+  .garden-stats-grid {
+    gap: 8px;
+  }
+  .stat-pill {
+    padding: 10px 14px;
+    gap: 12px;
+  }
+  .stat-icon {
+    font-size: 22px;
+  }
+  .stat-info strong {
+    font-size: 16px;
+  }
   .leetcode-garden-grid {
     grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+  }
+  .cell-day {
+    font-size: 10px;
+  }
+  .cell-icon {
+    font-size: 13px;
+  }
+  .detail-title {
+    font-size: 19px;
+  }
+  .garden-action-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .leetcode-garden-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
   }
 }

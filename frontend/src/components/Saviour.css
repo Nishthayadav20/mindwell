@@ -790,19 +790,64 @@
   color: #94a3b8;
 }
 
-/* Responsive adjustments */
+/* Responsive Breakpoints */
 @media (max-width: 960px) {
   .saviour-categories-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .saviour-container {
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .location-bar-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 18px 16px;
+  }
+  .location-controls {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+  .refresh-gps-btn,
+  .reset-location-btn {
+    width: 100%;
+    text-align: center;
+  }
+  .facilities-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 }
 
 @media (max-width: 640px) {
-  .location-gate-card {
-    padding: 36px 20px;
+  .saviour-container {
+    padding: 20px 12px;
   }
-  .facilities-grid {
-    grid-template-columns: 1fr;
+  .location-gate-card {
+    padding: 30px 16px;
+    border-radius: 18px;
+    margin: 10px auto 30px;
+  }
+  .location-gate-title {
+    font-size: 22px;
+  }
+  .gate-radar-wrap {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 16px;
+  }
+  .gate-radar-beacon {
+    font-size: 30px;
+  }
+  .gate-allow-btn {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 15px;
   }
   .facility-actions-row {
     grid-template-columns: 1fr;
@@ -810,5 +855,31 @@
   .results-header-bar {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
+  }
+  .centre-chips-grid {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .location-header-label strong {
+    font-size: 14.5px;
+  }
+  .radius-tag,
+  .session-verified-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+  }
+  .facility-card {
+    padding: 16px 14px;
+    border-radius: 14px;
+  }
+  .facility-title {
+    font-size: 16px;
+  }
+  .centre-chip-btn {
+    font-size: 12px;
+    padding: 5px 10px;
   }
 }

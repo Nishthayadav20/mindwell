@@ -174,3 +174,33 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 480px) {
+  .member-gate-container {
+    padding: 0 12px;
+    margin: 20px auto;
+  }
+  .member-gate-card {
+    padding: 24px 16px;
+    border-radius: 18px;
+  }
+  .mg-icon-wrap {
+    width: 66px;
+    height: 66px;
+    font-size: 32px;
+    margin-bottom: 14px;
+  }
+  .mg-title {
+    font-size: 21px;
+  }
+  .mg-desc {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+  .mg-login-btn,
+  .mg-saviour-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
