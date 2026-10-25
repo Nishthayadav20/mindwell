@@ -1,0 +1,147 @@
+// src/indiaEmergencyData.js
+// Verified National Emergency & Mental Health Helplines in India
+
+export const indiaEmergencyServices = [
+  {
+    id: 'tele-manas',
+    name: 'Tele-MANAS (Govt. of India)',
+    shortName: 'Tele-MANAS',
+    number: '14416 / 1800-891-4416',
+    dialNumber: '14416',
+    category: 'National Mental Health',
+    timing: '24 Hours / 7 Days a Week',
+    fee: '100% Toll-Free',
+    languages: 'Available in 20+ Indian Regional Languages & English',
+    organization: 'Ministry of Health & Family Welfare, Govt. of India & NIMHANS',
+    description: 'Comprehensive, multi-tiered 24/7 tele-mental health service offering free professional psychological support and psychiatric tele-consultation across India.',
+    badge: 'Govt Official'
+  },
+  {
+    id: 'kiran',
+    name: 'KIRAN Helpline (MSJE)',
+    shortName: 'KIRAN',
+    number: '1800-599-0019',
+    dialNumber: '18005990019',
+    category: 'Rehabilitation & Crisis Support',
+    timing: '24 Hours / 7 Days a Week',
+    fee: '100% Toll-Free',
+    languages: 'Hindi, English, and 13 Indian Languages',
+    organization: 'Department of Empowerment of Persons with Disabilities (DEPwD), Govt. of India',
+    description: 'National helpline providing early screening, first aid, psychological support, distress management, and mental health rehabilitation.',
+    badge: 'Govt Official'
+  },
+  {
+    id: 'national-emergency-112',
+    name: 'National Emergency Number (All-in-One)',
+    shortName: 'Pan-India 112',
+    number: '112',
+    dialNumber: '112',
+    category: 'Unified Emergency Services',
+    timing: '24 Hours / 7 Days a Week',
+    fee: '100% Toll-Free',
+    languages: 'All Indian Languages',
+    organization: 'Ministry of Home Affairs, Govt. of India',
+    description: 'Single unified emergency response number across all Indian States and UTs connecting to Police, Fire, and Ambulance (ERSS).',
+    badge: 'National Emergency'
+  },
+  {
+    id: 'vandrevala',
+    name: 'Vandrevala Foundation Helpline',
+    shortName: 'Vandrevala Foundation',
+    number: '+91 9999 666 555',
+    dialNumber: '+919999666555',
+    category: 'Crisis & Suicide Prevention',
+    timing: '24 Hours / 7 Days a Week',
+    fee: 'Free of Cost',
+    languages: 'English, Hindi, and Regional Languages',
+    organization: 'Cyrus & Priya Vandrevala Foundation',
+    description: '24/7 non-profit crisis intervention and suicide prevention helpline with experienced clinical psychologists and counselors.',
+    badge: 'NGO Helpline'
+  },
+  {
+    id: 'aasra',
+    name: 'AASRA Crisis Intervention',
+    shortName: 'AASRA',
+    number: '+91 98204 66726',
+    dialNumber: '+919820466726',
+    category: 'Suicide Prevention & Distress',
+    timing: '24 Hours / 7 Days a Week',
+    fee: 'Free & Confidential',
+    languages: 'English & Hindi',
+    organization: 'AASRA Non-Profit Organization',
+    description: 'Confidential crisis intervention center providing compassionate, non-judgmental emotional support to individuals feeling suicidal, lonely, or depressed.',
+    badge: 'NGO Helpline'
+  },
+  {
+    id: 'icall-tiss',
+    name: 'iCall (TISS - Tata Institute of Social Sciences)',
+    shortName: 'iCall (TISS)',
+    number: '+91 91529 87821 / 022-25521111',
+    dialNumber: '+919152987821',
+    category: 'Psychosocial Counseling',
+    timing: 'Monday to Saturday (10:00 AM – 8:00 PM)',
+    fee: 'Free (Standard call charges apply)',
+    languages: 'English, Hindi, Marathi, Gujarati, Bengali, etc.',
+    organization: 'Tata Institute of Social Sciences, Mumbai',
+    description: 'Free psychosocial counseling run by trained mental health professionals providing ethical and rights-based emotional support.',
+    badge: 'Academic/Clinical'
+  },
+  {
+    id: 'nimhans',
+    name: 'NIMHANS Psychosocial Support Helpline',
+    shortName: 'NIMHANS',
+    number: '080-46110007',
+    dialNumber: '08046110007',
+    category: 'Apex Medical Institution',
+    timing: '24 Hours / 7 Days a Week',
+    fee: 'Toll-Free / Standard',
+    languages: 'Hindi, English, Kannada, Tamil, Telugu, etc.',
+    organization: 'National Institute of Mental Health and Neuro-Sciences, Bengaluru',
+    description: 'Premier national neurosciences and mental health institute providing expert psychological first aid and clinical guidance.',
+    badge: 'Apex Institution'
+  },
+  {
+    id: 'ambulance-medical',
+    name: 'Ambulance & Medical Emergency',
+    shortName: 'Ambulance',
+    number: '108 / 102',
+    dialNumber: '108',
+    category: 'Immediate Medical Transport',
+    timing: '24 Hours / 7 Days a Week',
+    fee: 'Toll-Free',
+    languages: 'All State Regional Languages',
+    organization: 'State Emergency Medical Services & National Health Mission',
+    description: 'Immediate emergency medical response and hospital ambulance dispatch service across Indian states.',
+    badge: 'Medical Emergency'
+  },
+  {
+    id: 'ncw-women',
+    name: 'Women in Distress Helpline (NCW)',
+    shortName: 'Women Helpline',
+    number: '7827170170 / 1091',
+    dialNumber: '7827170170',
+    category: 'Women Protection & Safety',
+    timing: '24 Hours / 7 Days a Week',
+    fee: 'Free of Cost',
+    languages: 'Hindi & English',
+    organization: 'National Commission for Women (NCW), Govt. of India',
+    description: 'Dedicated 24/7 crisis helpline providing immediate assistance, legal counseling, and psychological support for women facing distress or violence.',
+    badge: 'Govt Official'
+  },
+  {
+    id: 'childline',
+    name: 'Childline India (Distress & Protection)',
+    shortName: 'Childline',
+    number: '1098',
+    dialNumber: '1098',
+    category: 'Child Care & Emergency Relief',
+    timing: '24 Hours / 7 Days a Week',
+    fee: '100% Toll-Free',
+    languages: 'All Indian Languages',
+    organization: 'Ministry of Women and Child Development, Govt. of India',
+    description: '24-hour, free emergency phone service for children in need of aid, emotional support, and emergency care.',
+    badge: 'Govt Official'
+  }
+];
+
+export default indiaEmergencyServices;

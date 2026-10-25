@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Roca One';
+  src: url('./RocaOne-Bold.woff2') format('woff2'),
+       url('./RocaOne-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Apply the font to the body or specific elements */
+body {
+  font-family: 'Roca One', sans-serif;
+}

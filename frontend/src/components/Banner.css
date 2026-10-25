@@ -1,0 +1,27 @@
+/* src/components/Banner.css */
+.banner {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 250px; /* Adjust height as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+}
+
+.banner-content {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}

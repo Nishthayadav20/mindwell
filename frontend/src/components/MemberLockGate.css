@@ -1,0 +1,176 @@
+/* src/components/MemberLockGate.css */
+.member-gate-wrapper {
+  background: #040d16;
+  min-height: 100vh;
+  padding-bottom: 70px;
+  color: #e2e8f0;
+}
+
+.member-gate-container {
+  max-width: 740px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.member-gate-card {
+  background: linear-gradient(135deg, rgba(15, 30, 48, 0.9) 0%, rgba(8, 20, 32, 0.96) 100%);
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
+  border-radius: 24px;
+  padding: 48px 36px;
+  text-align: center;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.18);
+  backdrop-filter: blur(14px);
+  position: relative;
+  overflow: hidden;
+}
+
+.member-gate-card::before {
+  content: '';
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 140px;
+  background: radial-gradient(ellipse, rgba(56, 189, 248, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.mg-icon-wrap {
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 20px auto;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1.5px solid rgba(56, 189, 248, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.25);
+  animation: pulseLock 2s infinite ease-in-out;
+}
+
+@keyframes pulseLock {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); box-shadow: 0 0 40px rgba(56, 189, 248, 0.4); }
+}
+
+.mg-badge {
+  display: inline-block;
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+.mg-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  letter-spacing: 0.4px;
+}
+
+.mg-desc {
+  font-size: 15px;
+  color: #cbd5e1;
+  line-height: 1.7;
+  max-width: 580px;
+  margin: 0 auto 28px auto;
+}
+
+.mg-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.mg-login-btn {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.45);
+}
+
+.mg-login-btn:hover {
+  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 26px rgba(56, 189, 248, 0.55);
+  color: #03101c;
+}
+
+.mg-saviour-btn {
+  background: rgba(255, 77, 109, 0.15);
+  border: 1.5px solid rgba(255, 77, 109, 0.4);
+  color: #ff4d6d;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mg-saviour-btn:hover {
+  background: #ff4d6d;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 26px rgba(255, 77, 109, 0.45);
+}
+
+.mg-info-box {
+  background: rgba(8, 18, 30, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.mg-info-box strong {
+  color: #e2e8f0;
+}
+
+.mg-info-box ul {
+  margin: 8px 0 0 0;
+  padding-left: 20px;
+}
+
+.mg-info-box li {
+  margin-bottom: 4px;
+}
+
+@media (max-width: 600px) {
+  .member-gate-card {
+    padding: 32px 20px;
+  }
+  .mg-actions {
+    flex-direction: column;
+  }
+  .mg-login-btn,
+  .mg-saviour-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

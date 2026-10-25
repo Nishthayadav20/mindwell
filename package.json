@@ -1,0 +1,6 @@
+{
+  "name": "emovia",
+  "dependencies": {
+    "react-router-dom": "^6.26.0"
+  }
+}
